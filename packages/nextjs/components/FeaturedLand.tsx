@@ -21,7 +21,7 @@ const FeaturedLand = () => {
               <h3 className="text-xl font-bold">{land}</h3>
               <p>The privileged location in Lambeth region in the west of London city.</p>
               <p>The project is close to many hotels, hospitals and commercial centers...</p>
-              <Link href="/LandsForSale" className="btn btn-primary mt-2">
+              <Link href="/land-for-sale" className="btn btn-primary mt-2">
                 View Lands
               </Link>
             </div>
