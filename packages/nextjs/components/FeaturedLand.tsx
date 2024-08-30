@@ -1,3 +1,7 @@
+"use client";
+
+import Link from "next/link";
+
 const FeaturedLand = () => {
   return (
     <section className="container mx-auto my-10">
@@ -17,7 +21,9 @@ const FeaturedLand = () => {
               <h3 className="text-xl font-bold">{land}</h3>
               <p>The privileged location in Lambeth region in the west of London city.</p>
               <p>The project is close to many hotels, hospitals and commercial centers...</p>
-              <button className="btn btn-primary mt-2">View Lands</button>
+              <Link href="/LandsForSale" className="btn btn-primary mt-2">
+                View Lands
+              </Link>
             </div>
           </div>
         ))}
