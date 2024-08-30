@@ -1,5 +1,4 @@
 import FilterSection from "../components/FilterSection";
-import Footer from "../components/Footer";
 import LandGrid from "../components/LandGrid";
 import Navbar from "../components/Navbar";
 import Pagination from "../components/Pagination";
@@ -13,7 +12,6 @@ const LandsForSale = () => {
         <LandGrid />
         <Pagination />
       </main>
-      <Footer />
     </div>
   );
 };
