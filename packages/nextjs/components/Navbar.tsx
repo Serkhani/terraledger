@@ -1,40 +1,44 @@
+"use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 
 const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="navbar bg-base-100 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" passHref>
-          <a className="text-xl font-bold">Terraledsor</a>
+    <nav className="bg-primary text-primary-content">
+      <div className="container mx-auto flex justify-between items-center py-4">
+        <Link href="/" className="text-xl font-bold">
+          Terraledger
         </Link>
         <ul className="flex space-x-4">
           <li>
-            <Link href="/" passHref>
-              <a className={pathname === "/" ? "text-primary" : ""}>Home</a>
+            <Link href="/" className={pathname === "/" ? "font-bold" : ""}>
+              Home
             </Link>
           </li>
           <li>
-            <Link href="/browse-lands" passHref>
-              <a className={pathname === "/browse-lands" ? "text-primary" : ""}>Browse Lands</a>
+            <Link href="/browse-lands" className={pathname === "/browse-lands" ? "font-bold" : ""}>
+              Browse Lands
             </Link>
           </li>
           <li>
-            <Link href="/about-us" passHref>
-              <a className={pathname === "/about-us" ? "text-primary" : ""}>About Us</a>
+            <Link href="/about-us" className={pathname === "/about-us" ? "font-bold" : ""}>
+              About Us
             </Link>
           </li>
           <li>
-            <Link href="/contact-us" passHref>
-              <a className={pathname === "/contact-us" ? "text-primary" : ""}>Contact Us</a>
+            <Link href="/contact-us" className={pathname === "/contact-us" ? "font-bold" : ""}>
+              Contact Us
             </Link>
           </li>
         </ul>
-        <div className="flex space-x-4">
-          <button className="btn btn-primary">Advertise</button>
-          <button className="btn btn-secondary">Login</button>
+        <div className="flex space-x-4 items-center">
+          <button className="btn btn-sm btn-secondary">Advertise</button>
+          <button className="btn btn-sm btn-secondary">Login</button>
+          <RainbowKitCustomConnectButton />
         </div>
       </div>
     </nav>
