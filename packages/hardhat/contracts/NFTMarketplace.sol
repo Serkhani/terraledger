@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract LandMarketplace is ERC721URIStorage, Ownable {
+contract LandMarketplace is ERC721URIStorage, Ownable{
     struct Land {
         uint256 id;
         string location;
