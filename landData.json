@@ -43,6 +43,15 @@
       "area": "3000 sq meters",
       "price": "750,000 ETH",
       "initialPaymentPercentage": "18%"
+    },
+    {
+      "name": "Lakeside",
+      "description": "Perfect for recreational facilities or a vacation home.",
+      "image": "https://example.com/images/land5.png",
+      "location": "90 Lakeside Drive, Retreat Town",
+      "area": "3000 sq meters",
+      "price": "750,000 ETH",
+      "initialPaymentPercentage": "18%"
     }
   ]
   
