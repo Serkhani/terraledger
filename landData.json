@@ -1,0 +1,48 @@
+[
+    {
+      "name": "Sunny Meadows Plot",
+      "description": "A scenic residential land located in Sunny Meadows with beautiful views and ample space for family living.",
+      "image": "https://example.com/images/land1.png",
+      "location": "45 Greenfield Lane, Sunny Meadows",
+      "area": "2000 sq meters",
+      "price": "500,000 ETH",
+      "initialPaymentPercentage": "15%"
+    },
+    {
+      "name": "Downtown Business Hub",
+      "description": "Prime commercial land in the heart of downtown. Ideal for office buildings or retail spaces.",
+      "image": "https://example.com/images/land2.png",
+      "location": "101 Business Avenue, Downtown",
+      "area": "3500 sq meters",
+      "price": "1,200,000 ETH",
+      "initialPaymentPercentage": "25%"
+    },
+    {
+      "name": "Green Valley Farm",
+      "description": "Fertile agricultural land perfect for farming and agriculture. Located in the Green Valley region.",
+      "image": "https://example.com/images/land3.png",
+      "location": "78 Farm Road, Green Valley",
+      "area": "5000 sq meters",
+      "price": "300,000 ETH",
+      "initialPaymentPercentage": "10%"
+    },
+    {
+      "name": "Industrial Park Site",
+      "description": "Expansive industrial land suited for factories or large warehouses. Situated in the Industrial Park area.",
+      "image": "https://example.com/images/land4.png",
+      "location": "56 Industry Street, Industrial Park",
+      "area": "7000 sq meters",
+      "price": "2,000,000 ETH",
+      "initialPaymentPercentage": "20%"
+    },
+    {
+      "name": "Lakeside Retreat",
+      "description": "Beautiful land next to a lake, perfect for recreational facilities or a vacation home.",
+      "image": "https://example.com/images/land5.png",
+      "location": "90 Lakeside Drive, Retreat Town",
+      "area": "3000 sq meters",
+      "price": "750,000 ETH",
+      "initialPaymentPercentage": "18%"
+    }
+  ]
+  
