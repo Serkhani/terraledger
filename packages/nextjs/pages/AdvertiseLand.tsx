@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -37,7 +37,7 @@ const AdvertiseLand = () => {
                 <input
                   type="text"
                   id="location"
-                  className="w-full px-3 py-2 border border-gray-300 bg-blue rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
@@ -48,7 +48,7 @@ const AdvertiseLand = () => {
                 <textarea
                   id="description"
                   rows={4}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 ></textarea>
               </div>
@@ -59,7 +59,7 @@ const AdvertiseLand = () => {
                 <input
                   type="number"
                   id="area"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-100"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
@@ -69,11 +69,13 @@ const AdvertiseLand = () => {
           <div className="rounded-lg shadow-md p-6 mb-8">
             <h2 className="text-2xl font-semibold mb-4">Posting Photos</h2>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <FaCloudUploadAlt />
-              <p className="mb-4">You can add 30 photos to your ad</p>
+              <div className="className=mx-auto text-4xl mb-4">
+                <FaCloudUploadAlt />
+              </div>
+              <p className="mb-4">You can add up to 30 photos to your ad</p>
               <label
                 htmlFor="photo-upload"
-                className="cursor-pointer bg-red-500 px-4 py-2 rounded-md hover:bg-red-600 transition-colors"
+                className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
               >
                 Upload From Computer
               </label>
@@ -102,7 +104,7 @@ const AdvertiseLand = () => {
 
           <div className="flex justify-center">
             <button
-              className="bg-red-500 text-white px-8 py-3 rounded-md hover:bg-red-600 transition-colors text-lg font-semibold"
+              className="bg-blue-500 text-white px-8 py-3 rounded-md hover:bg-blue-600 transition-colors text-lg font-semibold"
               onClick={handleNext}
             >
               Next
