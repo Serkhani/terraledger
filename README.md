@@ -1,80 +1,82 @@
-# 🏗 Scaffold-ETH 2
+# TerraLedger
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## Overview
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+TerraLedger aims to solve the issue of multiple land sales in Ghana by creating a transparent, secure, and efficient land management system using blockchain technology. Our solution leverages several cutting-edge tools and platforms to ensure reliability, scalability, and user trust.
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+## Key Features
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+- Secure land ownership registration and transfer
+- Prevention of multiple sales of the same land parcel
+- Trust-based user profile viewing
+- Fast and cost-effective transactions
+- Real-time indexing and querying of land records
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+## Technologies Used
 
-## Requirements
+### Circles
+- Implements a trust network for secure user interactions
+- Allows trusted users to view each other's profiles and details
+- Adapted for managing land ownership tokens or NFTs
 
-Before you begin, you need to install the following tools:
+### Scaffold-ETH
+- Used for rapid development and prototyping of our TerraLedger dApp
+- Provides templates and examples for smart contract development
 
-- [Node (>= v18.17)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+### The Graph
+- Indexes land ownership data for efficient querying
+- Enables real-time search and verification of land records
+- Utilizes GraphQL API for flexible data retrieval
 
-## Quickstart
+### zkSync (Paymaster)
+- Handles payments and transactions within the system
+- Ensures fast and low-cost transactions for users
 
-To get started with Scaffold-ETH 2, follow the steps below:
+### Optimism
+- Implements Optimistic Rollups for scalable and cost-effective transaction processing
+- Utilizes Optimism SDK for integration with Layer 2 network
+- Employs Optimism Gateway for cross-network asset management
 
-1. Install dependencies if it was skipped in CLI:
+## Deployment
 
-```
-cd my-dapp-example
-yarn install
-```
+TerraLedger is deployed and accessible on:
 
-2. Run a local network in the first terminal:
+- Fleek: [https://terraledger.on.fleek.co](https://terraledger.on.fleek.co)
+- Vercel: [https://terraledger.vercel.app](https://terraledger.vercel.app)
 
-```
-yarn chain
-```
+You can access and interact with the application through either of these links.
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
+## Getting Started
 
-3. On a second terminal, deploy the test contract:
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/terraledger.git
+   ```
 
-```
-yarn deploy
-```
+2. Install dependencies:
+   ```
+   cd terraledger
+   npm install
+   ```
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add necessary variables (e.g., API keys, network URLs).
 
-4. On a third terminal, start your NextJS app:
+4. Run the development server:
+   ```
+   npm run dev
+   ```
 
-```
-yarn start
-```
+5. Open `http://localhost:3000` in your browser to view the application.
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+## Contributing
 
-Run smart contract test with `yarn hardhat:test`
+We welcome contributions to improve TerraLedger. Please read our [CONTRIBUTING.md](CONTRIBUTING.md) file for details on our code of conduct and the process for submitting pull requests.
 
-- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
+## License
 
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## Documentation
+## Contact
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+@Serhaki
