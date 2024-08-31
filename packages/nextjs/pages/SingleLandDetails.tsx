@@ -11,38 +11,13 @@ interface InfoItemProps {
   value: string;
 }
 
-interface CustomAlertProps {
-  message: string;
-  type: "info" | "success" | "error";
-  onClose: () => void;
-}
-
-const CustomAlert: React.FC<CustomAlertProps> = ({ message, type, onClose }) => {
-  const bgColor = type === "success" ? "bg-green-100" : type === "error" ? "bg-red-100" : "bg-blue-100";
-  const textColor = type === "success" ? "text-green-800" : type === "error" ? "text-red-800" : "text-blue-800";
-
-  return (
-    <div className={`fixed bottom-4 right-4 w-96 p-4 rounded-md ${bgColor} ${textColor}`}>
-      <div className="flex justify-between items-center">
-        <p>{message}</p>
-        <button onClick={onClose} className="text-xl">
-          &times;
-        </button>
-      </div>
-    </div>
-  );
-};
-
 const SingleLandDetails = () => {
-  const [isProfileHidden, setIsProfileHidden] = useState(true);
-  const [isTrustEstablished, setIsTrustEstablished] = useState(false);
+  const [trustStatus, setTrustStatus] = useState<"initial" | "loading" | "trusted" | "failed" | "not_in_circles">(
+    "initial",
+  );
   const [isMessageDialogOpen, setIsMessageDialogOpen] = useState(false);
   const [sdk, setSdk] = useState<Sdk | null>(null);
   const [adapterAddress, setAdapterAddress] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [alertMessage, setAlertMessage] = useState<string | null>(null);
-  const [alertType, setAlertType] = useState<"info" | "success" | "error">("info");
-  const [isUserAvatar, setIsUserAvatar] = useState(false);
 
   useEffect(() => {
     initializeSdk();
@@ -71,46 +46,31 @@ const SingleLandDetails = () => {
       setSdk(newSdk);
     } catch (error) {
       console.error("Failed to initialize SDK:", error);
-      setAlertMessage("Failed to initialize. Please try again later.");
-      setAlertType("error");
     }
   };
 
   const handleViewProfile = async () => {
     if (!sdk || !adapterAddress) {
-      setAlertMessage("SDK or adapter address not initialized");
-      setAlertType("error");
+      console.error("SDK or adapter address not initialized");
       return;
     }
 
-    setIsLoading(true);
-    setAlertMessage("Initializing trust...");
-    setAlertType("info");
+    setTrustStatus("loading");
 
     try {
       const avatar = await sdk.getAvatar(adapterAddress);
       if (!avatar) {
-        setAlertMessage("User not found on Circles. Kindly create an account first.");
-        setAlertType("error");
-        setIsUserAvatar(false);
-        setIsLoading(false);
+        setTrustStatus("not_in_circles");
         return;
       }
 
-      setIsUserAvatar(true);
       const advertiserAddress = "0xB89513e64a043Fd2F497013E74e1373c68b787d7";
       await avatar.trust(advertiserAddress);
 
-      setIsTrustEstablished(true);
-      setAlertMessage("User is trusted. Profile revealed.");
-      setAlertType("success");
-      setIsProfileHidden(false);
+      setTrustStatus("trusted");
     } catch (error) {
       console.error("Error establishing trust:", error);
-      setAlertMessage("Failed to establish trust. Please try again.");
-      setAlertType("error");
-    } finally {
-      setIsLoading(false);
+      setTrustStatus("failed");
     }
   };
 
@@ -120,6 +80,52 @@ const SingleLandDetails = () => {
 
   const handleBuyLand = () => {
     console.log("Buy land clicked");
+  };
+
+  const renderProfileSection = () => {
+    switch (trustStatus) {
+      case "initial":
+        return (
+          <button
+            onClick={handleViewProfile}
+            className="w-full bg-blue-500 hover:bg-blue-600 text-black py-3 rounded-lg transition duration-300 flex items-center justify-center"
+          >
+            View Full Profile
+          </button>
+        );
+      case "loading":
+        return <div className="text-center py-3">Initializing trust...</div>;
+      case "trusted":
+        return (
+          <div>
+            <div className="mb-4">
+              <img src="/assets/user-icon.svg" alt="User Icon" className="w-16 h-16 mx-auto mb-2" />
+              <h3 className="text-2xl font-bold text-black text-center">Michael James</h3>
+              <p className="text-gray-600 text-center">Real Estate Specialist</p>
+              <p className="text-gray-800 text-center mt-2">Phone: +1 234 567 8900</p>
+            </div>
+            <button
+              onClick={handleSendMessage}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg mb-2 flex items-center justify-center"
+            >
+              <FaEnvelope /> Send Message
+            </button>
+            <button className="w-full bg-green-500 hover:bg-green-600 text-black py-3 rounded-lg flex items-center justify-center">
+              <FaPhone /> Call
+            </button>
+          </div>
+        );
+      case "failed":
+        return <div className="text-center py-3 text-red-500">Trust failed. User details hidden.</div>;
+      case "not_in_circles":
+        return (
+          <div className="text-center py-3 text-red-500">
+            Avatar is NOT in Circles. User must create an account first before they can be trusted!
+          </div>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -145,43 +151,7 @@ const SingleLandDetails = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Advertiser Info */}
             <div className="lg:w-1/3 mb-12">
-              <div className="p-6 rounded-lg shadow-md">
-                <div className={`transition-all duration-300 ${isProfileHidden ? "filter blur-md" : ""}`}>
-                  <div className="flex items-center mb-4">
-                    <div className="relative w-16 h-16">
-                      <img src="/assets/user-icon.svg" alt="User Icon" />
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="text-2xl font-bold text-black">Michael James</h3>
-                      <p className="text-gray-600">Real Estate Specialist</p>
-                    </div>
-                  </div>
-                  {!isProfileHidden && <p className="text-gray-800 mb-2">Phone: +1 234 567 8900</p>}
-                </div>
-                {isProfileHidden ? (
-                  <button
-                    onClick={handleViewProfile}
-                    disabled={isLoading}
-                    className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg transition duration-300 flex items-center justify-center"
-                  >
-                    {isLoading ? "Processing..." : "View Profile"}
-                  </button>
-                ) : (
-                  <>
-                    <button className="w-full bg-green-500 hover:bg-green-600 text-black py-3 rounded-lg mb-2 flex items-center justify-center">
-                      <FaPhone /> Call
-                    </button>
-                    {isTrustEstablished && (
-                      <button
-                        onClick={handleSendMessage}
-                        className="w-full border border-blue-300 hover:bg-blue-50 text-blue-800 py-3 rounded-lg flex items-center justify-center"
-                      >
-                        <FaEnvelope /> Send Message
-                      </button>
-                    )}
-                  </>
-                )}
-              </div>
+              <div className="p-6 rounded-lg shadow-md">{renderProfileSection()}</div>
             </div>
 
             {/* Land Details */}
@@ -214,9 +184,6 @@ const SingleLandDetails = () => {
           </div>
         </div>
       </main>
-
-      {/* Custom Alert */}
-      {alertMessage && <CustomAlert message={alertMessage} type={alertType} onClose={() => setAlertMessage(null)} />}
 
       {/* Message Dialog */}
       {isMessageDialogOpen && (
