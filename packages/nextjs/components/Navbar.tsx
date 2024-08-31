@@ -36,7 +36,9 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="flex space-x-4 items-center">
-          <button className="btn btn-sm btn-secondary">Advertise</button>
+          <Link href="/advertise-land" className="btn btn-sm btn-secondary">
+            Advertise
+          </Link>
           <button className="btn btn-sm btn-secondary">Login</button>
           <RainbowKitCustomConnectButton />
         </div>
