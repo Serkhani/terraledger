@@ -11,12 +11,38 @@ interface InfoItemProps {
   value: string;
 }
 
+interface CustomAlertProps {
+  message: string;
+  type: "info" | "success" | "error";
+  onClose: () => void;
+}
+
+const CustomAlert: React.FC<CustomAlertProps> = ({ message, type, onClose }) => {
+  const bgColor = type === "success" ? "bg-green-100" : type === "error" ? "bg-red-100" : "bg-blue-100";
+  const textColor = type === "success" ? "text-green-800" : type === "error" ? "text-red-800" : "text-blue-800";
+
+  return (
+    <div className={`fixed bottom-4 right-4 w-96 p-4 rounded-md ${bgColor} ${textColor}`}>
+      <div className="flex justify-between items-center">
+        <p>{message}</p>
+        <button onClick={onClose} className="text-xl">
+          &times;
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const SingleLandDetails = () => {
-  const [isProfileBlurred, setIsProfileBlurred] = useState(true);
+  const [isProfileHidden, setIsProfileHidden] = useState(true);
   const [isTrustEstablished, setIsTrustEstablished] = useState(false);
   const [isMessageDialogOpen, setIsMessageDialogOpen] = useState(false);
   const [sdk, setSdk] = useState<Sdk | null>(null);
   const [adapterAddress, setAdapterAddress] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const [alertType, setAlertType] = useState<"info" | "success" | "error">("info");
+  const [isUserAvatar, setIsUserAvatar] = useState(false);
 
   useEffect(() => {
     initializeSdk();
@@ -35,46 +61,56 @@ const SingleLandDetails = () => {
         nameRegistryAddress: "0x5525cbF9ad01a4E805ed1b40723D6377b336eCcf",
       };
 
-      // Initialize the adapter
       const adapter = new BrowserProviderContractRunner();
       await adapter.init();
 
-      // Check if adapter has a valid address, else use a mock address for demo
       const address = adapter.address || "0xF3ae974C867a786694AF0B4cCF873FF266bcd1d2";
-      if (!address) {
-        console.warn("Using mock address for demonstration purposes.");
-      }
-
       setAdapterAddress(address);
 
-      // Initialize SDK with the adapter
       const newSdk = new Sdk(config, adapter);
       setSdk(newSdk);
     } catch (error) {
       console.error("Failed to initialize SDK:", error);
+      setAlertMessage("Failed to initialize. Please try again later.");
+      setAlertType("error");
     }
   };
 
   const handleViewProfile = async () => {
     if (!sdk || !adapterAddress) {
-      console.error("SDK or adapter address not initialized");
+      setAlertMessage("SDK or adapter address not initialized");
+      setAlertType("error");
       return;
     }
+
+    setIsLoading(true);
+    setAlertMessage("Initializing trust...");
+    setAlertType("info");
 
     try {
       const avatar = await sdk.getAvatar(adapterAddress);
       if (!avatar) {
-        console.error("Avatar not found");
+        setAlertMessage("User not found on Circles. Kindly create an account first.");
+        setAlertType("error");
+        setIsUserAvatar(false);
+        setIsLoading(false);
         return;
       }
 
+      setIsUserAvatar(true);
       const advertiserAddress = "0xB89513e64a043Fd2F497013E74e1373c68b787d7";
       await avatar.trust(advertiserAddress);
 
-      setIsProfileBlurred(false);
       setIsTrustEstablished(true);
+      setAlertMessage("User is trusted. Profile revealed.");
+      setAlertType("success");
+      setIsProfileHidden(false);
     } catch (error) {
       console.error("Error establishing trust:", error);
+      setAlertMessage("Failed to establish trust. Please try again.");
+      setAlertType("error");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -83,7 +119,6 @@ const SingleLandDetails = () => {
   };
 
   const handleBuyLand = () => {
-    // Implement land purchase logic here
     console.log("Buy land clicked");
   };
 
@@ -111,7 +146,7 @@ const SingleLandDetails = () => {
             {/* Advertiser Info */}
             <div className="lg:w-1/3 mb-12">
               <div className="p-6 rounded-lg shadow-md">
-                <div className={`transition-all duration-300 ${isProfileBlurred ? "filter blur-md" : ""}`}>
+                <div className={`transition-all duration-300 ${isProfileHidden ? "filter blur-md" : ""}`}>
                   <div className="flex items-center mb-4">
                     <div className="relative w-16 h-16">
                       <img src="/assets/user-icon.svg" alt="User Icon" />
@@ -121,18 +156,20 @@ const SingleLandDetails = () => {
                       <p className="text-gray-600">Real Estate Specialist</p>
                     </div>
                   </div>
+                  {!isProfileHidden && <p className="text-gray-800 mb-2">Phone: +1 234 567 8900</p>}
                 </div>
-                {isProfileBlurred ? (
+                {isProfileHidden ? (
                   <button
                     onClick={handleViewProfile}
+                    disabled={isLoading}
                     className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg transition duration-300 flex items-center justify-center"
                   >
-                    <FaPhone /> View Profile
+                    {isLoading ? "Processing..." : "View Profile"}
                   </button>
                 ) : (
                   <>
                     <button className="w-full bg-green-500 hover:bg-green-600 text-black py-3 rounded-lg mb-2 flex items-center justify-center">
-                      <FaPhone /> View Phone
+                      <FaPhone /> Call
                     </button>
                     {isTrustEstablished && (
                       <button
@@ -177,6 +214,9 @@ const SingleLandDetails = () => {
           </div>
         </div>
       </main>
+
+      {/* Custom Alert */}
+      {alertMessage && <CustomAlert message={alertMessage} type={alertType} onClose={() => setAlertMessage(null)} />}
 
       {/* Message Dialog */}
       {isMessageDialogOpen && (
