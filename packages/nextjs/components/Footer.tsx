@@ -3,7 +3,7 @@ const Footer = () => {
     <footer className="bg-gray-800 text-white py-10">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <h3 className="text-xl font-bold mb-3">Homefast</h3>
+          <h3 className="text-xl font-bold mb-3">TerraLedger</h3>
           <ul>
             <li>About Us</li>
             <li>Our Awards</li>
