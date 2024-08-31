@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import { BsLightbulb } from "react-icons/bs";
 import { FaCloudUploadAlt } from "react-icons/fa";
 
 const AddDetails = () => {
@@ -21,7 +20,7 @@ const AddDetails = () => {
       <Navbar />
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <div className="rounded-lg shadow-md p-6 mb-8">
             <h2 className="text-2xl font-semibold mb-4">General Profile Information</h2>
             <form>
               <div className="mb-4">
@@ -45,7 +44,7 @@ const AddDetails = () => {
                   <p className="text-sm mb-2">Upload Profile Picture</p>
                   <label
                     htmlFor="profile-picture"
-                    className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition-colors"
+                    className="cursor-pointer text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition-colors"
                   >
                     Choose File
                   </label>
@@ -65,7 +64,7 @@ const AddDetails = () => {
                   <p className="text-sm mb-2">Upload Property Ownership Image</p>
                   <label
                     htmlFor="ownership-image"
-                    className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition-colors"
+                    className="cursor-pointer px-4 py-2 rounded-md text-sm hover:bg-blue-600 transition-colors"
                   >
                     Choose File
                   </label>
@@ -82,22 +81,14 @@ const AddDetails = () => {
             </form>
           </div>
 
-          <div className="bg-gray-100 rounded-lg p-4 mb-8">
-            <div className="flex items-center">
-              <div className="text-yellow-400 text-2xl mr-2">
-                <BsLightbulb />
-              </div>
-              <h3 className="text-lg font-semibold">Ad category selection</h3>
-            </div>
-            <p className="text-sm text-gray-600 mt-2">
-              In order for your advertisement to be sold quickly, the information must be entered completely.
-            </p>
-          </div>
+          <div className="rounded-lg p-4 mb-8">
+            <div className="flex items-center"></div>
 
-          <div className="flex justify-center">
-            <button className="bg-red-500 text-white px-8 py-3 rounded-md hover:bg-red-600 transition-colors text-lg font-semibold">
-              Finish
-            </button>
+            <div className="flex justify-center">
+              <button className="bg-red-500 text-white px-8 py-3 rounded-md hover:bg-red-600 transition-colors text-lg font-semibold">
+                Finish
+              </button>
+            </div>
           </div>
         </div>
       </main>
