@@ -1,9 +1,0 @@
-{
-  "sites": [
-    {
-      "slug": "terraledga",
-      "distDir": "packages/nextjs/.next",
-      "buildCommand": "yarn && yarn build"
-    }
-  ]
-}
