@@ -7,7 +7,7 @@ const FeaturedSales = () => {
           <div key={item} className="card">
             <img src="/assets/land.svg" alt="Land" className="w-full h-48 object-cover" />
             <div className="p-4">
-              <h3 className="text-xl font-bold">290.000 $</h3>
+              <h3 className="text-xl font-bold">500 000.000 GH₵</h3>
               <p>Land for sale</p>
               <p>London, Oxford St.</p>
               <p>26 November 2020</p>

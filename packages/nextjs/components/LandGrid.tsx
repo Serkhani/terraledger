@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const LandGrid = () => {
   const lands = Array(12).fill({
-    price: "6000000.00 $",
+    price: "600 000.00 GH₵",
     title: "Land for sale",
     location: "East Legon Hills.",
     date: "26 November 2020",
