@@ -79,4 +79,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Contact
 
-For any queries or support, please contact our team at [support@terraledger.com](mailto:support@terraledger.com).
+@Serhaki
