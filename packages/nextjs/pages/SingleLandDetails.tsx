@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
-import { FaPhone, FaEnvelope } from "react-icons/fa";
+import { FaEnvelope, FaPhone } from "react-icons/fa";
+import Navbar from "~~/components/Navbar";
 
 interface InfoItemProps {
   label: string;
@@ -14,23 +14,16 @@ const SingleLandDetails = () => {
 
   const handleViewProfile = async () => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
       setIsProfileBlurred(false);
     } catch (error) {
       console.error("Error requesting trust:", error);
     }
   };
 
-  // In a real application, this would come from your data source (e.g., API, CMS)
-  const images = [
-    "/assets/land-1.jpg",
-    "/assets/land-2.jpg",
-    "/assets/land-3.jpg",
-    "/assets/land-4.jpg",
-  ];
-
   return (
     <div className="min-h-screen">
+      <Navbar />
       <main className="container mx-auto px-4 py-8">
         <div className="rounded-lg shadow-lg p-8">
           <div className="flex justify-between items-center mb-6">
@@ -41,17 +34,10 @@ const SingleLandDetails = () => {
           {/* Image Gallery */}
           <div className="mb-6 overflow-x-auto">
             <div className="flex space-x-4">
-              {images.map((src, index) => (
-                <div key={index} className="relative w-80 h-60 flex-shrink-0">
-                  <Image
-                    src={src}
-                    alt={`Land view ${index + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="rounded-lg object-cover"
-                  />
-                </div>
-              ))}
+              <img src="/assets/land-3.jpg" alt="Land view 1" className="w-64 h-40 object-cover rounded-lg" />
+              <img src="/assets/land-4.jpg" alt="Land view 2" className="w-64 h-40 object-cover rounded-lg" />
+              <img src="/assets/land-3.jpg" alt="Land view 3" className="w-64 h-40 object-cover rounded-lg" />
+              <img src="/assets/land-4.jpg" alt="Land view 4" className="w-64 h-40 object-cover rounded-lg" />
             </div>
           </div>
 
@@ -59,20 +45,10 @@ const SingleLandDetails = () => {
             {/* Advertiser Info */}
             <div className="lg:w-1/3 mb-12">
               <div className="p-6 rounded-lg shadow-md">
-                <div
-                  className={`transition-all duration-300 ${
-                    isProfileBlurred ? "filter blur-md" : ""
-                  }`}
-                >
+                <div className={`transition-all duration-300 ${isProfileBlurred ? "filter blur-md" : ""}`}>
                   <div className="flex items-center mb-4">
                     <div className="relative w-16 h-16">
-                      <Image
-                        src="/assets/user-icon.svg"
-                        alt="Advertiser"
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="rounded-full"
-                      />
+                      <img src="/assets/user-icon.svg" />
                     </div>
                     <div className="ml-4">
                       <h3 className="text-2xl font-bold text-black">Michael James</h3>
@@ -85,15 +61,15 @@ const SingleLandDetails = () => {
                     onClick={handleViewProfile}
                     className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg transition duration-300 flex items-center justify-center"
                   >
-                    <FaPhone className="mr-2" /> View Profile
+                    <FaPhone /> View Profile
                   </button>
                 ) : (
                   <>
                     <button className="w-full bg-green-500 hover:bg-green-600 text-black py-3 rounded-lg mb-2 flex items-center justify-center">
-                      <FaPhone className="mr-2" /> View Phone
+                      <FaPhone /> View Phone
                     </button>
                     <button className="w-full border border-blue-300 hover:bg-blue-50 text-blue-800 py-3 rounded-lg flex items-center justify-center">
-                      <FaEnvelope className="mr-2" /> Send Message
+                      <FaEnvelope /> Send Message
                     </button>
                   </>
                 )}
