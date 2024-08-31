@@ -20,7 +20,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/browse-lands" className={pathname === "/browse-lands" ? "font-bold" : ""}>
+            <Link href="/land-for-sale" className={pathname === "/browse-lands" ? "font-bold" : ""}>
               Browse Lands
             </Link>
           </li>
