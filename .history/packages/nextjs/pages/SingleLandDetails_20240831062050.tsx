@@ -40,11 +40,11 @@ const SingleLandDetails = () => {
       await adapter.init();
 
       // Check if adapter has a valid address, else use a mock address for demo
-      const address = adapter.address || "0xF3ae974C867a786694AF0B4cCF873FF266bcd1d2";
+      const address = adapter.address || "0x336Cb7ac4e8A81Bc6532ED1c1Bb9FB0f489a1102";
       if (!address) {
         console.warn("Using mock address for demonstration purposes.");
       }
-
+      
       setAdapterAddress(address);
 
       // Initialize SDK with the adapter
@@ -55,28 +55,37 @@ const SingleLandDetails = () => {
     }
   };
 
-  const handleViewProfile = async () => {
-    if (!sdk || !adapterAddress) {
-      console.error("SDK or adapter address not initialized");
+const handleViewProfile = async () => {
+  if (!sdk || !adapterAddress) {
+    console.error("SDK or adapter address not initialized");
+    return;
+  }
+
+  try {
+    // Check if the address has an avatar
+    const hasAvatar = await sdk.hasAvatar(adapterAddress);
+    if (!hasAvatar) {
+      console.log("Address is not registered with an avatar, signing up...");
+      await sdk.signup(adapterAddress);  // Sign up the address to create an avatar
+    }
+
+    // Now get the avatar
+    const avatar = await sdk.getAvatar(adapterAddress);
+    if (!avatar) {
+      console.error("Avatar not found after signup");
       return;
     }
 
-    try {
-      const avatar = await sdk.getAvatar(adapterAddress);
-      if (!avatar) {
-        console.error("Avatar not found");
-        return;
-      }
+    const advertiserAddress = "0xB89513e64a043Fd2F497013E74e1373c68b787d7";
+    await avatar.trust(advertiserAddress);
 
-      const advertiserAddress = "0xB89513e64a043Fd2F497013E74e1373c68b787d7";
-      await avatar.trust(advertiserAddress);
+    setIsProfileBlurred(false);
+    setIsTrustEstablished(true);
+  } catch (error) {
+    console.error("Error establishing trust:", error);
+  }
+};
 
-      setIsProfileBlurred(false);
-      setIsTrustEstablished(true);
-    } catch (error) {
-      console.error("Error establishing trust:", error);
-    }
-  };
 
   const handleSendMessage = () => {
     setIsMessageDialogOpen(true);

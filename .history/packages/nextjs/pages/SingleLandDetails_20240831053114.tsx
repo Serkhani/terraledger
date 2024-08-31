@@ -16,59 +16,45 @@ const SingleLandDetails = () => {
   const [isTrustEstablished, setIsTrustEstablished] = useState(false);
   const [isMessageDialogOpen, setIsMessageDialogOpen] = useState(false);
   const [sdk, setSdk] = useState<Sdk | null>(null);
-  const [adapterAddress, setAdapterAddress] = useState<string | null>(null);
 
   useEffect(() => {
     initializeSdk();
   }, []);
 
   const initializeSdk = async () => {
-    try {
-      const config: CirclesConfig = {
-        circlesRpcUrl: "https://chiado-rpc.aboutcircles.com",
-        pathfinderUrl: "https://chiado-pathfinder.aboutcircles.com",
-        v2PathfinderUrl: "https://chiado-pathfinder.aboutcircles.com/pathfinder/",
-        profileServiceUrl: "https://chiado-pathfinder.aboutcircles.com/profiles/",
-        v1HubAddress: "0xdbf22d4e8962db3b2f1d9ff55be728a887e47710",
-        v2HubAddress: "0xEddc960D3c78692BF38577054cb0a35114AE35e0",
-        migrationAddress: "0x8C9BeAccb6b7DBd3AeffB5D77cab36b62Fe98882",
-        nameRegistryAddress: "0x5525cbF9ad01a4E805ed1b40723D6377b336eCcf",
-      };
+    const config: CirclesConfig = {
+      circlesRpcUrl: "https://chiado-rpc.aboutcircles.com",
+      pathfinderUrl: "https://chiado-pathfinder.aboutcircles.com",
+      v2PathfinderUrl: "https://chiado-pathfinder.aboutcircles.com/pathfinder/",
+      profileServiceUrl: "https://chiado-pathfinder.aboutcircles.com/profiles/",
+      v1HubAddress: "0xdbf22d4e8962db3b2f1d9ff55be728a887e47710",
+      v2HubAddress: "0xEddc960D3c78692BF38577054cb0a35114AE35e0",
+      migrationAddress: "0x8C9BeAccb6b7DBd3AeffB5D77cab36b62Fe98882",
+      nameRegistryAddress: "0x5525cbF9ad01a4E805ed1b40723D6377b336eCcf",
+    };
 
-      // Initialize the adapter
-      const adapter = new BrowserProviderContractRunner();
-      await adapter.init();
+    const adapter = new BrowserProviderContractRunner();
+    await adapter.init();
 
-      // Check if adapter has a valid address, else use a mock address for demo
-      const address = adapter.address || "0xF3ae974C867a786694AF0B4cCF873FF266bcd1d2";
-      if (!address) {
-        console.warn("Using mock address for demonstration purposes.");
-      }
-
-      setAdapterAddress(address);
-
-      // Initialize SDK with the adapter
-      const newSdk = new Sdk(config, adapter);
-      setSdk(newSdk);
-    } catch (error) {
-      console.error("Failed to initialize SDK:", error);
-    }
+    const newSdk = new Sdk(config, adapter);
+    setSdk(newSdk);
   };
 
   const handleViewProfile = async () => {
-    if (!sdk || !adapterAddress) {
-      console.error("SDK or adapter address not initialized");
+    if (!sdk) {
+      console.error("SDK not initialized");
       return;
     }
 
     try {
-      const avatar = await sdk.getAvatar(adapterAddress);
+      const avatar = await sdk.getAvatar((sdk as any).adapter.address);
       if (!avatar) {
         console.error("Avatar not found");
         return;
       }
 
-      const advertiserAddress = "0xB89513e64a043Fd2F497013E74e1373c68b787d7";
+      // Replace with the actual advertiser's address
+      const advertiserAddress = "0x123456789...";
       await avatar.trust(advertiserAddress);
 
       setIsProfileBlurred(false);
@@ -195,7 +181,11 @@ const SingleLandDetails = () => {
                 Cancel
               </button>
               <button
-                onClick={() => setIsMessageDialogOpen(false)}
+                onClick={() => {
+                  // Implement send message logic here
+                  console.log("Message sent");
+                  setIsMessageDialogOpen(false);
+                }}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               >
                 Send
@@ -208,10 +198,10 @@ const SingleLandDetails = () => {
   );
 };
 
-const InfoItem = ({ label, value }: InfoItemProps) => (
-  <div className="bg-gray-100 p-4 rounded-lg shadow-md">
-    <h4 className="text-lg font-semibold text-gray-700 mb-2">{label}</h4>
-    <p className="text-gray-600">{value}</p>
+const InfoItem: React.FC<InfoItemProps> = ({ label, value }) => (
+  <div className="p-4 rounded-lg shadow-sm">
+    <p className="font-semibold text-black">{label}:</p>
+    <p className="text-black">{value}</p>
   </div>
 );
 

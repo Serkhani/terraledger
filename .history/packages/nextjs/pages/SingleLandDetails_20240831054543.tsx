@@ -16,7 +16,6 @@ const SingleLandDetails = () => {
   const [isTrustEstablished, setIsTrustEstablished] = useState(false);
   const [isMessageDialogOpen, setIsMessageDialogOpen] = useState(false);
   const [sdk, setSdk] = useState<Sdk | null>(null);
-  const [adapterAddress, setAdapterAddress] = useState<string | null>(null);
 
   useEffect(() => {
     initializeSdk();
@@ -35,19 +34,13 @@ const SingleLandDetails = () => {
         nameRegistryAddress: "0x5525cbF9ad01a4E805ed1b40723D6377b336eCcf",
       };
 
-      // Initialize the adapter
       const adapter = new BrowserProviderContractRunner();
       await adapter.init();
 
-      // Check if adapter has a valid address, else use a mock address for demo
-      const address = adapter.address || "0xF3ae974C867a786694AF0B4cCF873FF266bcd1d2";
-      if (!address) {
-        console.warn("Using mock address for demonstration purposes.");
+      if (!adapter.address) {
+        throw new Error("Adapter address is not initialized.");
       }
 
-      setAdapterAddress(address);
-
-      // Initialize SDK with the adapter
       const newSdk = new Sdk(config, adapter);
       setSdk(newSdk);
     } catch (error) {
@@ -56,19 +49,27 @@ const SingleLandDetails = () => {
   };
 
   const handleViewProfile = async () => {
-    if (!sdk || !adapterAddress) {
-      console.error("SDK or adapter address not initialized");
+    if (!sdk) {
+      console.error("SDK not initialized");
       return;
     }
 
     try {
+      const adapterAddress = (sdk as any).adapter?.address;
+
+      if (!adapterAddress) {
+        console.error("Adapter address is undefined");
+        return;
+      }
+
       const avatar = await sdk.getAvatar(adapterAddress);
       if (!avatar) {
         console.error("Avatar not found");
         return;
       }
 
-      const advertiserAddress = "0xB89513e64a043Fd2F497013E74e1373c68b787d7";
+      // Replace with the actual advertiser's address
+      const advertiserAddress = "0x123456789...";
       await avatar.trust(advertiserAddress);
 
       setIsProfileBlurred(false);
@@ -195,7 +196,11 @@ const SingleLandDetails = () => {
                 Cancel
               </button>
               <button
-                onClick={() => setIsMessageDialogOpen(false)}
+                onClick={() => {
+                  // Implement send message logic here
+                  console.log("Message sent");
+                  setIsMessageDialogOpen(false);
+                }}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
               >
                 Send

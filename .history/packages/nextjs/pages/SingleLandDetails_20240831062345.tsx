@@ -44,7 +44,7 @@ const SingleLandDetails = () => {
       if (!address) {
         console.warn("Using mock address for demonstration purposes.");
       }
-
+      
       setAdapterAddress(address);
 
       // Initialize SDK with the adapter
