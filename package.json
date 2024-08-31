@@ -43,6 +43,8 @@
     "node": ">=18.17.0"
   },
   "dependencies": {
+    "@circles-sdk/adapter-ethers": "^0.7.1",
+    "@circles-sdk/sdk": "^0.7.1",
     "@googlemaps/js-api-loader": "^1.16.8",
     "@tanstack/query-core": "^5.53.1",
     "@tanstack/react-query": "^5.53.1",

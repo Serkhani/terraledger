@@ -12,6 +12,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@adraffy/ens-normalize@npm:1.10.1":
+  version: 1.10.1
+  resolution: "@adraffy/ens-normalize@npm:1.10.1"
+  checksum: 0836f394ea256972ec19a0b5e78cb7f5bcdfd48d8a32c7478afc94dd53ae44c04d1aa2303d7f3077b4f3ac2323b1f557ab9188e8059978748fdcd83e04a80dcc
+  languageName: node
+  linkType: hard
+
 "@alloc/quick-lru@npm:^5.2.0":
   version: 5.2.0
   resolution: "@alloc/quick-lru@npm:5.2.0"
@@ -228,6 +235,83 @@ __metadata:
     "@chainsafe/persistent-merkle-tree": ^0.4.2
     case: ^1.6.3
   checksum: c6eaedeae9e5618b3c666ff4507a27647f665a8dcf17d5ca86da4ed4788c5a93868f256d0005467d184fdf35ec03f323517ec2e55ec42492d769540a2ec396bc
+  languageName: node
+  linkType: hard
+
+"@circles-sdk/abi-v1@npm:0.7.1":
+  version: 0.7.1
+  resolution: "@circles-sdk/abi-v1@npm:0.7.1"
+  dependencies:
+    ethers: ^6.13.2
+  checksum: 55825a0817d4b3b9fcb1ae229d255c2daab05ed37740df7460bd2128257a0ab85e33cc8ba6a38a5e3a8415043272851094299401d4b23a0fd55574820ef533b6
+  languageName: node
+  linkType: hard
+
+"@circles-sdk/abi-v2@npm:0.7.1":
+  version: 0.7.1
+  resolution: "@circles-sdk/abi-v2@npm:0.7.1"
+  dependencies:
+    ethers: ^6.13.2
+  checksum: ff6fb627d98008cb8c0a075c786c05d09e4996e2820178df96dc8de197eee00fbd823ee042008d31dc6a5b19d6e8813999818a4adae1202cbc012b10d0808448
+  languageName: node
+  linkType: hard
+
+"@circles-sdk/adapter-ethers@npm:0.7.1, @circles-sdk/adapter-ethers@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "@circles-sdk/adapter-ethers@npm:0.7.1"
+  dependencies:
+    "@circles-sdk/adapter": 0.7.1
+    ethers: ^6.13.2
+  checksum: 32cf3b10f8327b99358893a7bdbfc0ddfc42f8388064b26e8edcc11eee49b9eb7f522999ac09541283606b7966af6f7d54e8cd15079927c7c0e3cf58d27874dd
+  languageName: node
+  linkType: hard
+
+"@circles-sdk/adapter@npm:0.7.1":
+  version: 0.7.1
+  resolution: "@circles-sdk/adapter@npm:0.7.1"
+  checksum: b712422d947bdf5077b38be4216c42114a4ebeb05ec09c3561a1e3bf4f33c9fad6bda945408404015b55414101b51ee123f1500e2b4a40c349374c8d0ef1c428
+  languageName: node
+  linkType: hard
+
+"@circles-sdk/data@npm:0.7.1":
+  version: 0.7.1
+  resolution: "@circles-sdk/data@npm:0.7.1"
+  dependencies:
+    "@circles-sdk/utils": 0.7.1
+  checksum: 09de53d33ed605f2954052597d4023f0880a32c52390a79e0b76410d573295d24dcb4108b63b504f1ffa8dde116c05d4e9e36fbe1b77449037f95b7a06d46930
+  languageName: node
+  linkType: hard
+
+"@circles-sdk/profiles@npm:0.7.1":
+  version: 0.7.1
+  resolution: "@circles-sdk/profiles@npm:0.7.1"
+  dependencies:
+    "@circles-sdk/utils": 0.7.1
+  checksum: c72c28c9da493251324f6afde6f0f5959ee74652641635fb4d41bb3bdfbeb3501b765946ad9a3bd17a48d508ffb439d4ef356014d0e617c9808bd8ee945232a5
+  languageName: node
+  linkType: hard
+
+"@circles-sdk/sdk@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "@circles-sdk/sdk@npm:0.7.1"
+  dependencies:
+    "@circles-sdk/abi-v1": 0.7.1
+    "@circles-sdk/abi-v2": 0.7.1
+    "@circles-sdk/adapter-ethers": 0.7.1
+    "@circles-sdk/data": 0.7.1
+    "@circles-sdk/profiles": 0.7.1
+    ethers: ^6.13.2
+    multihashes: ^4.0.3
+  checksum: 98bb4e8cb4f2b1e9835a244eb918cca4e0fefce38261297723e8bec0dbe80199339b4bc8e69204758f8c8e3f768d902a0e8b492bac966322b0667eb607a37a67
+  languageName: node
+  linkType: hard
+
+"@circles-sdk/utils@npm:0.7.1":
+  version: 0.7.1
+  resolution: "@circles-sdk/utils@npm:0.7.1"
+  dependencies:
+    bignumber.js: ^9.1.2
+  checksum: 4067c3c8e7860bcca2182d45b9aab60ba43107ea58bc4c130a6f44b944f105d00c6ae43ca64c921f433b62f1550cef33659ba6b4ac9d9e0b72e72694eed46127
   languageName: node
   linkType: hard
 
@@ -1430,6 +1514,13 @@ __metadata:
     "@motionone/dom": ^10.16.4
     tslib: ^2.3.1
   checksum: 746e38d0ee831829bfac2ce471f3d98a9e37bd8cbdf2706fa3becce69c17f51180a1ee47582d97758d68aafdfc9a187ab47ff216c77254ac994287dabcf266c1
+  languageName: node
+  linkType: hard
+
+"@multiformats/base-x@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@multiformats/base-x@npm:4.0.1"
+  checksum: ecbf84bdd7613fd795e4a41f20f3e8cc7df8bbee84690b7feed383d45a638ed228a80ff6f5c930373cbf24539f64857b66023ee3c1e914f6bac9995c76414a87
   languageName: node
   linkType: hard
 
@@ -4932,6 +5023,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bignumber.js@npm:^9.1.2":
+  version: 9.1.2
+  resolution: "bignumber.js@npm:9.1.2"
+  checksum: 582c03af77ec9cb0ebd682a373ee6c66475db94a4325f92299621d544aa4bd45cb45fd60001610e94aef8ae98a0905fa538241d9638d4422d57abbeeac6fadaf
+  languageName: node
+  linkType: hard
+
 "binary-extensions@npm:^2.0.0":
   version: 2.3.0
   resolution: "binary-extensions@npm:2.3.0"
@@ -7532,6 +7630,21 @@ __metadata:
     "@ethersproject/web": 5.7.1
     "@ethersproject/wordlists": 5.7.0
   checksum: b7c08cf3e257185a7946117dbbf764433b7ba0e77c27298dec6088b3bc871aff711462b0621930c56880ff0a7ceb8b1d3a361ffa259f93377b48e34107f62553
+  languageName: node
+  linkType: hard
+
+"ethers@npm:^6.13.2":
+  version: 6.13.2
+  resolution: "ethers@npm:6.13.2"
+  dependencies:
+    "@adraffy/ens-normalize": 1.10.1
+    "@noble/curves": 1.2.0
+    "@noble/hashes": 1.3.2
+    "@types/node": 18.15.13
+    aes-js: 4.0.0-beta.5
+    tslib: 2.4.0
+    ws: 8.17.1
+  checksum: 981860c736c7ae121774ad38ea07e3611ce524a77d2fcb77db499b65afe0cbe8f344cd5204d94b68b316349ff770fd2a7d9c8b2039da41c072f98d9864099925
   languageName: node
   linkType: hard
 
@@ -10710,10 +10823,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"multibase@npm:^4.0.1":
+  version: 4.0.6
+  resolution: "multibase@npm:4.0.6"
+  dependencies:
+    "@multiformats/base-x": ^4.0.1
+  checksum: 891ce47f509c6070d2306e7e00aef3ef41fbb50a848a1e1bec5e75ca63c5032015a436cf09e9e3939b5b2ca81e74804151eb410a388f10e9aabf7a2f5a35d272
+  languageName: node
+  linkType: hard
+
 "multiformats@npm:^9.4.2":
   version: 9.9.0
   resolution: "multiformats@npm:9.9.0"
   checksum: d3e8c1be400c09a014f557ea02251a2710dbc9fca5aa32cc702ff29f636c5471e17979f30bdcb0a9cbb556f162a8591dc2e1219c24fc21394a56115b820bb84e
+  languageName: node
+  linkType: hard
+
+"multihashes@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "multihashes@npm:4.0.3"
+  dependencies:
+    multibase: ^4.0.1
+    uint8arrays: ^3.0.0
+    varint: ^5.0.2
+  checksum: 57c978aa53f7144f8a146a486aa6aea96a73f21058f48ab80a8c5542854197aa63d33aae42b005bed1bbba9f70958b60f3287d90f1a47cf13e8ea7d75d6b8e34
   languageName: node
   linkType: hard
 
@@ -12748,6 +12881,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
+    "@circles-sdk/adapter-ethers": ^0.7.1
+    "@circles-sdk/sdk": ^0.7.1
     "@googlemaps/js-api-loader": ^1.16.8
     "@tanstack/query-core": ^5.53.1
     "@tanstack/react-query": ^5.53.1
@@ -14727,6 +14862,13 @@ __metadata:
     react:
       optional: true
   checksum: cce2d9212aac9fc4bdeba2d381188cc831cfe8d2d03039024cfcd58ba1801f2a5b14d01c2bb21a2c9f12046d2ede64f1dd887175185f39bee553677a35592c30
+  languageName: node
+  linkType: hard
+
+"varint@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "varint@npm:5.0.2"
+  checksum: e1a66bf9a6cea96d1f13259170d4d41b845833acf3a9df990ea1e760d279bd70d5b1f4c002a50197efd2168a2fd43eb0b808444600fd4d23651e8d42fe90eb05
   languageName: node
   linkType: hard
 
